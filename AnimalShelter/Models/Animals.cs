@@ -29,6 +29,13 @@ namespace AnimalShelter.Models
             this.Gender = gender;
         }
 
+        public string ConvertDate(DateTime date)
+        {
+            string format = "MMM d yyyy";
+            string newDate = date.ToString(format);
+            return newDate;
+        }
+
         public override bool Equals(System.Object otherAnimal)
         {
             if (!(otherAnimal is Animals))

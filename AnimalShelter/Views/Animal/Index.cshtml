@@ -10,12 +10,12 @@
         <input name="name" type="text" placeholder="Enter name here" required>
         <input name="species" type="text" placeholder="Enter species here" required>
         <input name="date" type="date" placeholder="Enter date here" required>
-        <select name="gender">
+        <select name="gender" required>
             <option value="" disabled selected hidden>Gender</option>
             <option value="male">Male</option>
             <option value="female">Female</option>
         </select>
-        <button class="btn btn-primary" type="submit">Add</button>
+        <button class="btn btn-primary btn-sm" type="submit">Add</button>
     </div>
 </form>
 
@@ -35,18 +35,18 @@
         {
             <div class="cell">@animal.Name</div>
             <div class="cell">@animal.Species</div>
-            <div class="cell">@animal.Date</div>
+            <div class="cell">@animal.ConvertDate(@animal.Date)</div>
             <div class="cell">@animal.Gender</div>
             <div class="cell">
                 <form action="/animals/delete/@animal.Id" method="post">
-                    <button type="submit" class="btn btn-danger">Delete Entry</button>
+                    <button type="submit" class="btn btn-danger btn-sm">Delete Entry</button>
                 </form>
             </div>
         }
     }
 
     <form action="/delete" method="post">
-        <button type="submit" class="btn btn-danger">Delete All Entries</button>
+        <button type="submit" id="delete-all" class="btn btn-danger btn-sm">Delete All Entries</button>
     </form>
 
 </div>
