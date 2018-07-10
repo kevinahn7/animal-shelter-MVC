@@ -22,9 +22,6 @@ namespace AnimalShelter.Controllers
         {
             Animals newAnimal = new Animals(name, species, date, gender);
             newAnimal.Save();
-            List<Animals> animalList = new List<Animals>();
-            animalList = Animals.GetAll();
-
             return RedirectToAction("Index");
         }
 
