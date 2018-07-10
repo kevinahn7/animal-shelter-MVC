@@ -27,5 +27,19 @@ namespace AnimalShelter.Controllers
 
             return RedirectToAction("Index");
         }
+
+        [HttpPost("/animals/delete/{id}")]
+        public ActionResult DeleteSingleAnimal(int id)
+        {
+            Animals.DeleteSingle(id);
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost("/delete")]
+        public ActionResult Delete()
+        {
+            Animals.DeleteAll();
+            return RedirectToAction("Index");
+        }
     }
 }

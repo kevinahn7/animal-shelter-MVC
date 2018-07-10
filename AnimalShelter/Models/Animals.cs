@@ -63,6 +63,23 @@ namespace AnimalShelter.Models
             }
         }
 
+        public static void DeleteSingle(int id)
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"DELETE FROM animals WHERE id = " + id + ";";
+
+            cmd.ExecuteNonQuery();
+
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+        }
+
         public static List<Animals> GetAll()
         {
             List<Animals> allAnimals = new List<Animals> { };
