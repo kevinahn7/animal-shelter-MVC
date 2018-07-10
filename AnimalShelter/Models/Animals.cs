@@ -27,6 +27,14 @@ namespace AnimalShelter.Models
             _gender = gender;
         }
 
+        public Animals(string animalName, string species, DateTime date, string gender)
+        {
+            _name = animalName;
+            _species = species;
+            _date = date;
+            _gender = gender;
+        }
+
         public override bool Equals(System.Object otherAnimal)
         {
             if (!(otherAnimal is Animals))
@@ -36,11 +44,11 @@ namespace AnimalShelter.Models
             else
             {
                 Animals newAnimal = (Animals) otherAnimal;
-                bool NameEquality = (this.Name == newAnimal.Name);
-                bool SpeciesEquality = (this.Species == newAnimal.Species);
-                bool DateEquality = (this.Date == newAnimal.Date);
-                bool GenderEquality = (this.Gender == newAnimal.Gender);
-                return (NameEquality && SpeciesEquality && DateEquality && GenderEquality);
+                bool nameEquality = (this.Name == newAnimal.Name);
+                bool speciesEquality = (this.Species == newAnimal.Species);
+                bool dateEquality = (this.Date == newAnimal.Date);
+                bool genderEquality = (this.Gender == newAnimal.Gender);
+                return (nameEquality && speciesEquality && dateEquality && genderEquality);
             }
         }
 
@@ -94,33 +102,12 @@ namespace AnimalShelter.Models
             conn.Open();
 
             var cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"INSERT INTO animals (id, name, species, date, gender) VALUES (@AnimalId, @AnimalName, @AnimalSpecies, @AnimalDate, @AnimalGender);";
+            cmd.CommandText = @"INSERT INTO animals (name, species, date, gender) VALUES (@AnimalName, @AnimalSpecies, @AnimalDate, @AnimalGender);";
 
-            MySqlParameter animalId = new MySqlParameter();
-            animalId.ParameterName = "@AnimalId";
-            animalId.Value = _id;
-            cmd.Parameters.Add(animalId);
-
-            MySqlParameter animalName = new MySqlParameter();
-            animalName.ParameterName = "@AnimalName";
-            animalName.Value = _name;
-            cmd.Parameters.Add(animalName);
-
-            MySqlParameter animalSpecies = new MySqlParameter();
-            animalSpecies.ParameterName = "@AnimalSpecies";
-            animalSpecies.Value = _species;
-            cmd.Parameters.Add(animalSpecies);
-
-            MySqlParameter animalDate = new MySqlParameter();
-            animalDate.ParameterName = "@AnimalDate";
-            animalDate.Value = _date;
-            cmd.Parameters.Add(animalDate);
-
-            MySqlParameter animalGender = new MySqlParameter();
-            animalGender.ParameterName = "@AnimalGender";
-            animalGender.Value = _gender;
-            cmd.Parameters.Add(animalGender);
-
+            cmd.Parameters.AddWithValue("@AnimalName", _name);
+            cmd.Parameters.AddWithValue("@AnimalSpecies", _species);
+            cmd.Parameters.AddWithValue("@AnimalDate", _date);
+            cmd.Parameters.AddWithValue("@AnimalGender", _gender);
 
             cmd.ExecuteNonQuery();
             _id = (int) cmd.LastInsertedId;
