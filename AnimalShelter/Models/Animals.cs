@@ -6,12 +6,6 @@ namespace AnimalShelter.Models
 {
     public class Animals
     {
-        private int _id;
-        private string _name;
-        private string _species;
-        private DateTime _date;
-        private string _gender;
-
         public int Id { get; set; }
         public string Name { get; set; }
         public string Species { get; set; }
@@ -20,19 +14,19 @@ namespace AnimalShelter.Models
 
         public Animals(int Id, string animalName, string species, DateTime date, string gender)
         {
-            _id = Id;
-            _name = animalName;
-            _species = species;
-            _date = date;
-            _gender = gender;
+            this.Id = Id;
+            this.Name = animalName;
+            this.Species = species;
+            this.Date = date;
+            this.Gender = gender;
         }
 
         public Animals(string animalName, string species, DateTime date, string gender)
         {
-            _name = animalName;
-            _species = species;
-            _date = date;
-            _gender = gender;
+            this.Name = animalName;
+            this.Species = species;
+            this.Date = date;
+            this.Gender = gender;
         }
 
         public override bool Equals(System.Object otherAnimal)
@@ -104,13 +98,13 @@ namespace AnimalShelter.Models
             var cmd = conn.CreateCommand() as MySqlCommand;
             cmd.CommandText = @"INSERT INTO animals (name, species, date, gender) VALUES (@AnimalName, @AnimalSpecies, @AnimalDate, @AnimalGender);";
 
-            cmd.Parameters.AddWithValue("@AnimalName", _name);
-            cmd.Parameters.AddWithValue("@AnimalSpecies", _species);
-            cmd.Parameters.AddWithValue("@AnimalDate", _date);
-            cmd.Parameters.AddWithValue("@AnimalGender", _gender);
+            cmd.Parameters.AddWithValue("@AnimalName", this.Name);
+            cmd.Parameters.AddWithValue("@AnimalSpecies", this.Species);
+            cmd.Parameters.AddWithValue("@AnimalDate", this.Date);
+            cmd.Parameters.AddWithValue("@AnimalGender", this.Gender);
 
             cmd.ExecuteNonQuery();
-            _id = (int) cmd.LastInsertedId;
+            this.Id = (int) cmd.LastInsertedId;
 
             conn.Close();
             if (conn != null)

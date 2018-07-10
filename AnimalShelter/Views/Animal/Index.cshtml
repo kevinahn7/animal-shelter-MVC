@@ -1,5 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Animal Shelter";
+    Layout = "_Layout";
+
 }
 
 <h1>Animal Shelter</h1>
@@ -9,22 +11,22 @@
         <input name="species" type="text" placeholder="Enter species here" required>
         <input name="date" type="date" placeholder="Enter date here" required>
         <input name="gender" type="text" placeholder="Enter gender here" required>
-        <button class="btn btn-dark" type="submit">Add</button>
+        <button class="btn btn-primary" type="submit">Add</button>
     </div>
 </form>
 
 <div class="theTable">
-    <div>Name</div>
-    <div>Species</div>
-    <div>Date</div>
-    <div>Gender</div>
+    <div class="heading">Name</div>
+    <div class="heading">Species</div>
+    <div class="heading">Date</div>
+    <div class="heading">Gender</div>
 
-        @foreach(var animal in Model)
-        {
-            <div class="cell">@animal.Name</div>
-            <div class="cell">@animal.Species</div>
-            <div class="cell">@animal.Date</div>
-            <div class="cell">@animal.Gender</div>
-        }
+    @foreach(var animal in Model)
+    {
+        <div class="cell">@animal.Name</div>
+        <div class="cell">@animal.Species</div>
+        <div class="cell">@animal.Date</div>
+        <div class="cell">@animal.Gender</div>
+    }
 
 </div>

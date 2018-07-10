@@ -10,9 +10,11 @@ namespace AnimalShelter.Controllers
     public class AnimalController : Controller
     {
         [HttpGet("/animals")]
-        public IActionResult Index()
+        public ActionResult Index()
         {
-            return View();
+            List<Animals> animalList = new List<Animals>();
+            animalList = Animals.GetAll();
+            return View(animalList);
         }
 
         [HttpPost("/animals")]
@@ -20,8 +22,10 @@ namespace AnimalShelter.Controllers
         {
             Animals newAnimal = new Animals(name, species, date, gender);
             newAnimal.Save();
+            List<Animals> animalList = new List<Animals>();
+            animalList = Animals.GetAll();
 
-            return View("Index", Animals.GetAll());
+            return RedirectToAction("Index");
         }
     }
 }
