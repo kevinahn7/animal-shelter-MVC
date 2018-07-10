@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "Animal Shelter";
+}
+
+<h1>Animal Shelter</h1>
+<form action="/animals" method="post">
+    <div class="form-group">
+        <input name="name" type="text" placeholder="Enter name here" required>
+        <input name="species" type="text" placeholder="Enter species here" required>
+        <input name="date" type="date" placeholder="Enter date here" required>
+        <input name="gender" type="text" placeholder="Enter gender here" required>
+        <button class="btn btn-dark" type="submit">Add</button>
+    </div>
+</form>
